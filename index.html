@@ -143,6 +143,8 @@
 
         var index = 0;
 
+        var time = 0;
+
         //清除所有active类
         var clearActive = function() {
             for (var i = 0; i < items.length; i++) {
@@ -168,6 +170,7 @@
                 index = 0;
             }
             goIndex();
+            time = 0;
         }
 
         //左按钮方法
@@ -178,6 +181,7 @@
                 index = 4;
             }
             goIndex();
+            time = 0;
         }
 
         //点点添加事件
@@ -186,13 +190,18 @@
                 var pointIndex = this.getAttribute('data-index');
                 index = pointIndex;
                 goIndex();
+                time = 0;
             });
         }
 
         //定时器
         setInterval(function() {
-            goNext();
-        }, 5000)
+            time++;
+            if (time == 3) {
+                goNext();
+                time = 0;
+            }
+        }, 1000)
     </script>
 </body>
 
